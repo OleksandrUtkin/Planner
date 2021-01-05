@@ -2,6 +2,7 @@
 
 # phpStorm files
 /.idea
+.eslintcache
 
 # dependencies
 /node_modules
