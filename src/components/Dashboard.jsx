@@ -23,6 +23,7 @@ const Dashboard = (props) => {
             {error && <p>error</p>}
             <p><strong>Email: </strong>{currentUser.email}</p>
             <button onClick={handleLogOut}>Log Out</button>
+            <Link to='/update-profile'>Update profile</Link>
         </>
     );
 };

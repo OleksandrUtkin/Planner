@@ -10,10 +10,11 @@ const SignUp = (props) => {
     const {signUp} = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const history = useHistory;
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Password do not match')
         }
@@ -22,7 +23,9 @@ const SignUp = (props) => {
             setError('');
             setLoading(true);
             await signUp(emailRef.current.value, passwordRef.current.value);
-            history.push('/')
+            console.log('error', error);
+            history.push('/');
+            console.log('error', error);
         } catch {
             setError('Failed to create an account')
         }
