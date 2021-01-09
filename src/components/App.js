@@ -1,18 +1,18 @@
 import React from 'react';
-import SignUp from "./SignUp";
-import {AuthProvider} from "../context/AuthContext";
+import SignUp from "./auth/SignUp";
+// import {AuthProvider} from "../context/AuthContext";
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Dashboard from "./Dashboard";
-import Login from './Login';
+import Login from './auth/Login';
 import PrivateRoute from "./PrivateRoute";
-import ForgotPassword from "./ForgotPassword";
-import UpdateProfile from "./UpdateProfile";
+import ForgotPassword from "./auth/ForgotPassword";
+import UpdateProfile from "./auth/UpdateProfile";
 
 function App() {
   return (
     <>
         <BrowserRouter>
-            <AuthProvider>
+            {/*<AuthProvider>*/}
                 <Switch>
                     <PrivateRoute exact path='/' component={Dashboard}/>
                     <PrivateRoute exact path='/update-profile' component={UpdateProfile}/>
@@ -20,7 +20,7 @@ function App() {
                     <Route path='/login' component={Login}/>
                     <Route path='/forgot-password' component={ForgotPassword}/>
                 </Switch>
-            </AuthProvider>
+            {/*</AuthProvider>*/}
         </BrowserRouter>
     </>
   );
