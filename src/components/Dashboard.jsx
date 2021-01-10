@@ -1,8 +1,17 @@
 import React, {useState}  from 'react';
-import {useAuth} from '../context/AuthContext';
-import {Link, useHistory} from 'react-router-dom';
+import {connect} from "react-redux";
+import {useHistory, Redirect} from 'react-router-dom';
+// import {useAuth} from '../context/AuthContext';
+// import {Link, useHistory} from 'react-router-dom';
+
+import Menu from "./menu/Menu";
 
 const Dashboard = (props) => {
+    const history = useHistory();
+
+    // !props.authorized && history.push('/signUp');
+
+
     // const [error, setError] = useState('');
     // const {currentUser, logOut} = useAuth();
     // const history = useHistory();
@@ -17,9 +26,16 @@ const Dashboard = (props) => {
     //     }
     // };
 
+
+    // if (!props.authorized) {
+    //     return <Redirect to='/'/>
+    // }
     return (
         <>
-            Dashboard
+            <header>
+                <Menu/>
+            </header>
+            <h2>Dashboard</h2>
             {/*<h2>Profile</h2>*/}
             {/*{error && <p>error</p>}*/}
             {/*<p><strong>Email: </strong>{currentUser.email}</p>*/}
@@ -29,4 +45,10 @@ const Dashboard = (props) => {
     );
 };
 
-export default Dashboard;
+const mapStateToProps = store => {
+    return {
+        authStatus: store.auth.authStatus
+    }
+};
+
+export default connect(mapStateToProps, null)(Dashboard);

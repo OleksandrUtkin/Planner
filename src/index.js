@@ -24,7 +24,7 @@ const loadFromLocalStore = () => {
         if(serializedState === null) return undefined;
         return JSON.parse(serializedState);
     } catch (e) {
-        console.log(e);
+        console.log(e.message);
         return undefined;
     }
 };

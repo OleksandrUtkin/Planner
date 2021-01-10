@@ -13,7 +13,8 @@ var config = {
 
 firebase.initializeApp(config);
 
-firebase.firestore().settings({timestampsInSnapshots: true})
+firebase.firestore().settings({timestampsInSnapshots: true});
 
-const firebaseReady = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+// const firebaseReady = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+const firebaseReady = firebase.app();
 export default firebaseReady;

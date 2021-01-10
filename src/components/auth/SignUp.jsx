@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
-import sendLoginData from "../../store/actions/signUp";
+import sendLoginData from "../../store/actions/auth";
 // import {useAuth} from "../../context/AuthContext";
 // import {Link, useHistory} from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const SignUp = (props) => {
     //     setInputNameValue(e.target.value);
     // };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         props.sendLoginData({
             nameValue: nameRef.current.value,
@@ -28,7 +28,7 @@ const SignUp = (props) => {
         });
     };
 
-    props.authorized && history.push('/');
+    props.authStatus && history.push('/');
 
     // const emailRef = useRef();
     // const passwordRef = useRef();
@@ -101,7 +101,7 @@ const SignUp = (props) => {
 const mapStateToProps = store => {
     return {
         errorMessage: store.auth.errorMessage,
-        authorized: store.auth.authorized
+        authStatus: store.auth.authStatus
     }
 };
 

@@ -1,0 +1,11 @@
+.menu {
+    position: fixed;
+    width: 300px;
+    right: 0;
+    height: 100vh;
+    background-color: gray;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
