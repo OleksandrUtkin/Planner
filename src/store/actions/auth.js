@@ -1,4 +1,3 @@
-// import firebase from "firebase";
 import firebaseReady from "../../firebase";
 
 export const GET_DATA_SUCCESS = 'GET_REPOS_SUCCESS';

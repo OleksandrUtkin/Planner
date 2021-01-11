@@ -12,16 +12,13 @@ function App() {
   return (
     <>
         <BrowserRouter>
-            {/*<AuthProvider>*/}
                 <Switch>
                     <PrivateRoute exact path='/' component={Dashboard}/>
-                    {/*<Route path='/' component={Dashboard}/>*/}
                     <PrivateRoute exact path='/update-profile' component={UpdateProfile}/>
                     <Route exact path='/signUp' component={SignUp}/>
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/forgot-password' component={ForgotPassword}/>
                 </Switch>
-            {/*</AuthProvider>*/}
         </BrowserRouter>
     </>
   );
