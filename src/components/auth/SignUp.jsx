@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
-import {Link, useHistory} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import sendLoginData from "../../store/actions/auth";
 
 const SignUp = (props) => {
@@ -9,7 +9,6 @@ const SignUp = (props) => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,7 +20,9 @@ const SignUp = (props) => {
         });
     };
 
-    props.authStatus && history.push('/');
+    if (props.authStatus) {
+        return <Redirect to='/'/>
+    }
 
     return (
         <section className='sign-wrap'>

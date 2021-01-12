@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './scss/index.scss';
 import App from './components/App';
-import {createStore, applyMiddleware} from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 import rootReducer from "./store/reducers/rootReducer";
 import {Provider} from "react-redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from "redux-thunk";
+import {reactReduxFirebase, getFirebase, ReactReduxFirebaseProvider} from "react-redux-firebase";
+import {reduxFirestore, getFirestore, createFirestoreInstance} from "redux-firestore";
+import {config} from './config/fbConfig';
+import firebase from "firebase/app";
 // import reportWebVitals from './reportWebVitals';
 
 const saveToLocalStore = (state) => {
@@ -14,7 +18,7 @@ const saveToLocalStore = (state) => {
         const serializedState = JSON.stringify(state);
         localStorage.setItem('state', serializedState);
     } catch (e) {
-        console.log(e);
+        console.log(e.message);
     }
 };
 
@@ -34,15 +38,29 @@ const persistedState = loadFromLocalStore();
 const store = createStore(
     rootReducer,
     persistedState,
-    composeWithDevTools(applyMiddleware(ReduxThunk))
+    compose(
+        composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument({getFirebase, getFirestore}))),
+        reduxFirestore(firebase, config)
+        // reduxFirestore(config),
+        // reactReduxFirebase(config)
+    )
 );
+
+const rrfProps = {
+    firebase,
+    config: config,
+    dispatch: store.dispatch,
+    createFirestoreInstance
+};
 
 store.subscribe(() => saveToLocalStore(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
-        <App />
+          <ReactReduxFirebaseProvider {...rrfProps}>
+            <App />
+          </ReactReduxFirebaseProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

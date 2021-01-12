@@ -1,4 +1,5 @@
-import firebaseReady from "../../firebase";
+// import firebaseReady from "../../firebase";
+import firebase from "../../config/fbConfig";
 
 export const GET_DATA_SUCCESS = 'GET_REPOS_SUCCESS';
 export const GET_DATA_FAILURE = 'GET_REPOS_FAILURE';
@@ -7,7 +8,7 @@ export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 export const RESTORE_PASSWORD_SUCCESS = 'RESTORE_PASSWORD_SUCCESS';
 export const RESTORE_PASSWORD_FAILURE = 'RESTORE_PASSWORD_FAILURE';
-
+export const CLEAR_STATE = 'CLEAR_STATE';
 
 export const logInSuccess = (data) => {
     return {
@@ -64,7 +65,7 @@ export const logIn = ({emailValue, passwordValue}) => {
             if (passwordValue.length < 6) {
                 throw new Error('Password must be at least 6 characters');
             } else {
-                await firebaseReady.auth().signInWithEmailAndPassword(emailValue, passwordValue);
+                await firebase.app().auth().signInWithEmailAndPassword(emailValue, passwordValue);
                 await dispatch(logInSuccess(emailValue));
             }
         } catch (err) {
@@ -82,7 +83,7 @@ const sendLoginData = ({nameValue, emailValue, passwordValue, confirmPasswordVal
             } else if (passwordValue.length < 6) {
                 throw new Error('Password must be at least 6 characters');
             } else {
-                await firebaseReady.auth().createUserWithEmailAndPassword(emailValue, passwordValue);
+                await firebase.app().auth().createUserWithEmailAndPassword(emailValue, passwordValue);
                 await dispatch(signUpSuccess({nameValue, emailValue}));
             }
         } catch (err) {
@@ -94,7 +95,7 @@ const sendLoginData = ({nameValue, emailValue, passwordValue, confirmPasswordVal
 export const logOut = (authStatus) => {
     return async dispatch => {
         try {
-            await firebaseReady.auth().signOut();
+            await firebase.app().auth().signOut();
             await dispatch(logOutAction(authStatus));
         } catch (err) {
             console.log(err.message);
@@ -105,7 +106,7 @@ export const logOut = (authStatus) => {
 export const restorePasswordAction = (emailValue) => {
     return async dispatch => {
         try {
-            await firebaseReady.auth().sendPasswordResetEmail(emailValue);
+            await firebase.app().auth().sendPasswordResetEmail(emailValue);
             await dispatch(restorePasswordSuccess('Check your inbox for further instructions'))
         } catch (err) {
             await dispatch(restorePasswordFailure(err.message))

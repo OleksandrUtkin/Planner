@@ -1,20 +1,22 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
-import {Link, useHistory} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {logIn} from '../../store/actions/auth';
 
 const Login = (props) => {
+
     const emailRef = useRef();
     const passwordRef = useRef();
-    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         props.logIn({emailValue: emailRef.current.value, passwordValue: passwordRef.current.value})
     };
 
-    props.authStatus && history.push('/');
+    if (props.authStatus) {
+        return <Redirect to='/'/>;
+    }
 
     return (
         <section className='sign-wrap'>
