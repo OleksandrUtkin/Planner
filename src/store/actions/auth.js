@@ -1,5 +1,6 @@
-// import firebaseReady from "../../firebase";
+import 'firebase/firestore';
 import firebase from "../../config/fbConfig";
+const db = firebase.firestore();
 
 export const GET_DATA_SUCCESS = 'GET_REPOS_SUCCESS';
 export const GET_DATA_FAILURE = 'GET_REPOS_FAILURE';
@@ -76,14 +77,18 @@ export const logIn = ({emailValue, passwordValue}) => {
 };
 
 const sendLoginData = ({nameValue, emailValue, passwordValue, confirmPasswordValue}) => {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             if (passwordValue !== confirmPasswordValue) {
                 throw new Error('Password do not match');
             } else if (passwordValue.length < 6) {
                 throw new Error('Password must be at least 6 characters');
             } else {
-                await firebase.app().auth().createUserWithEmailAndPassword(emailValue, passwordValue);
+                await firebase.app().auth().createUserWithEmailAndPassword(emailValue, passwordValue).then(cred => {
+                    db.collection('users').doc(cred.user.uid).set({
+                        userName: nameValue
+                    });
+                });
                 await dispatch(signUpSuccess({nameValue, emailValue}));
             }
         } catch (err) {
