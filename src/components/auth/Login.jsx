@@ -39,7 +39,7 @@ const Login = (props) => {
 
 const mapStateToProps = (store) => {
     return {
-        authStatus: store.auth.authStatus,
+        authStatus: store.firebase.auth.uid,
         errorMessage: store.auth.errorMessage
     }
 };

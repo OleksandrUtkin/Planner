@@ -10,10 +10,7 @@ import {
 
 const initialState = {
     dateOfBirth: null,
-    name: null,
     errorMessage: null,
-    email: null,
-    authStatus: false,
     message: null
 };
 
@@ -22,10 +19,7 @@ const authReducer = (state = initialState, action) => {
         case GET_DATA_SUCCESS :
             return {
                 ...state,
-                name: action.payload.nameValue,
                 errorMessage: null,
-                email: action.payload.emailValue,
-                authStatus: true,
             };
         case GET_DATA_FAILURE:
             return {
@@ -40,8 +34,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 errorMessage: null,
-                email: action.payload,
-                authStatus: true
             };
         case LOG_IN_FAILURE:
             return {

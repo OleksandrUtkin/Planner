@@ -19,13 +19,14 @@ const Dashboard = (props) => {
 const mapStateToProps = (store) => {
     console.log(store);
     return {
-        name: store.auth.name
+        name: store.firebase.profile.userName
     }
 };
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: 'users'}
-    ])
-)(Dashboard);
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect([
+//         {collection: 'users'}
+//     ])
+// )(Dashboard);
+export default connect(mapStateToProps)(Dashboard)

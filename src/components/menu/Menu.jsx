@@ -6,7 +6,7 @@ import {logOut} from "../../store/actions/auth";
 const Menu = (props) => {
 
     const handleLogOut = () => {
-        props.logOut(false);
+        props.logOut();
     };
 
     return (
@@ -18,13 +18,13 @@ const Menu = (props) => {
 
 const mapStateToProps = (store) => {
     return {
-        authStatus: store.auth.authStatus
+        authStatus: store.firebase.auth.uid
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logOut: (authStatus) => dispatch(logOut(authStatus))
+        logOut: () => dispatch(logOut())
     }
 };
 

@@ -49,7 +49,7 @@ const SignUp = (props) => {
 const mapStateToProps = store => {
     return {
         errorMessage: store.auth.errorMessage,
-        authStatus: store.auth.authStatus
+        authStatus: store.firebase.auth.uid
     }
 };
 

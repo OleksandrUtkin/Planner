@@ -35,20 +35,25 @@ const loadFromLocalStore = () => {
 
 const persistedState = loadFromLocalStore();
 
+const rrfConfig = {
+    userProfile: 'users',
+    useFirestoreForProfile: true
+};
+
 const store = createStore(
     rootReducer,
     persistedState,
     compose(
         composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument({getFirebase, getFirestore}))),
-        reduxFirestore(firebase, config)
+        reduxFirestore(firebase, config),
         // reduxFirestore(config),
-        // reactReduxFirebase(config)
+        // reactReduxFirebase(fbConfig)
     )
 );
 
 const rrfProps = {
     firebase,
-    config: config,
+    config: rrfConfig,
     dispatch: store.dispatch,
     createFirestoreInstance
 };

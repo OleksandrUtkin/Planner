@@ -67,7 +67,6 @@ export const logIn = ({emailValue, passwordValue}) => {
                 throw new Error('Password must be at least 6 characters');
             } else {
                 await firebase.app().auth().signInWithEmailAndPassword(emailValue, passwordValue);
-                await dispatch(logInSuccess(emailValue));
             }
         } catch (err) {
             dispatch(logInFailure(err.message));
@@ -89,7 +88,7 @@ const sendLoginData = ({nameValue, emailValue, passwordValue, confirmPasswordVal
                         userName: nameValue
                     });
                 });
-                await dispatch(signUpSuccess({nameValue, emailValue}));
+                // await dispatch(signUpSuccess({nameValue, emailValue}));
             }
         } catch (err) {
             dispatch(signUpFailure({errorMessage: err.message}));
@@ -101,7 +100,6 @@ export const logOut = (authStatus) => {
     return async dispatch => {
         try {
             await firebase.app().auth().signOut();
-            await dispatch(logOutAction(authStatus));
         } catch (err) {
             console.log(err.message);
         }

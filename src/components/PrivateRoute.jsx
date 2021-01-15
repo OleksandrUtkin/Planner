@@ -15,8 +15,9 @@ const PrivateRoute = ({component: Component, authStatus,  ...rest}) => {
 };
 
 const mapStateToProps = (store) => {
+    // console.log(store);
     return {
-        authStatus: store.auth.authStatus
+        authStatus: store.firebase.auth.uid,
     }
 };
 
