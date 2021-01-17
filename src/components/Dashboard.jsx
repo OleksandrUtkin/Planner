@@ -17,7 +17,6 @@ const Dashboard = (props) => {
 };
 
 const mapStateToProps = (store) => {
-    console.log(store);
     return {
         name: store.firebase.profile.userName
     }

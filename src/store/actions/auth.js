@@ -2,21 +2,10 @@ import 'firebase/firestore';
 import firebase from "../../config/fbConfig";
 const db = firebase.firestore();
 
-export const GET_DATA_SUCCESS = 'GET_REPOS_SUCCESS';
 export const GET_DATA_FAILURE = 'GET_REPOS_FAILURE';
-export const LOG_OUT = 'LOG_OUT';
-export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 export const RESTORE_PASSWORD_SUCCESS = 'RESTORE_PASSWORD_SUCCESS';
 export const RESTORE_PASSWORD_FAILURE = 'RESTORE_PASSWORD_FAILURE';
-export const CLEAR_STATE = 'CLEAR_STATE';
-
-export const logInSuccess = (data) => {
-    return {
-        type: LOG_IN_SUCCESS,
-        payload: data
-    }
-};
 
 export const logInFailure = (errorMessage) => {
     return {
@@ -25,24 +14,10 @@ export const logInFailure = (errorMessage) => {
     }
 };
 
-export const signUpSuccess = (emailValue) => {
-    return {
-        type: GET_DATA_SUCCESS,
-        payload: emailValue
-    }
-};
-
 export const signUpFailure = (data) => {
     return {
         type: GET_DATA_FAILURE,
         payload: data
-    }
-};
-
-export const logOutAction = (authStatus) => {
-    return {
-        type: LOG_OUT,
-        payload: authStatus
     }
 };
 
@@ -75,20 +50,22 @@ export const logIn = ({emailValue, passwordValue}) => {
     }
 };
 
-const sendLoginData = ({nameValue, emailValue, passwordValue, confirmPasswordValue}) => {
+const signUp = ({nameValue, emailValue, passwordValue, confirmPasswordValue, dayOfBirth, monthOfBirth, yearOfBirth}) => {
     return async (dispatch) => {
         try {
             if (passwordValue !== confirmPasswordValue) {
                 throw new Error('Password do not match');
             } else if (passwordValue.length < 6) {
                 throw new Error('Password must be at least 6 characters');
+            } else if (!dayOfBirth || !monthOfBirth || !yearOfBirth) {
+                throw new Error('Date of birth is not correct');
             } else {
                 await firebase.app().auth().createUserWithEmailAndPassword(emailValue, passwordValue).then(cred => {
                     db.collection('users').doc(cred.user.uid).set({
-                        userName: nameValue
+                        userName: nameValue,
+                        dateOfBirth: `${yearOfBirth}-${monthOfBirth}-${dayOfBirth}`
                     });
                 });
-                // await dispatch(signUpSuccess({nameValue, emailValue}));
             }
         } catch (err) {
             dispatch(signUpFailure({errorMessage: err.message}));
@@ -117,4 +94,4 @@ export const restorePasswordAction = (emailValue) => {
     }
 };
 
-export default sendLoginData;
+export default signUp;

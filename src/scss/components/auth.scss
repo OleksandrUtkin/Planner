@@ -75,7 +75,7 @@
     }
     &__modal-day-ul {
         width: 22%;
-        height: 100%;
+        max-height: 220px;
         overflow-y: auto;
     }
     &__modal-month-ul {
@@ -83,12 +83,12 @@
         position: absolute;
         transform: translateX(-50%);
         width: 70%;
-        height: 100%;
+        max-height: 220px;
         overflow-y: auto;
     }
     &__modal-years-ul {
         width: 22%;
-        height: 100%;
+        max-height: 220px;
         overflow-y: auto;
         right: 0;
         position: absolute;

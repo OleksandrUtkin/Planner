@@ -1,10 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import '../../scss/components/auth.scss';
 
-const DateOfBirth = (props) => {
-    const [birthDaySelect, setBirthDaySelect] = useState(false);
-    const [monthSelect, setMonthSelect] = useState(false);
-    const [yearSelect, setYearSelect] = useState(false);
+const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSelect, yearSelect, setYearSelect}) => {
     const dayModalRef = useRef();
     const birthDayBtnRef = useRef();
     const monthModalRef = useRef();

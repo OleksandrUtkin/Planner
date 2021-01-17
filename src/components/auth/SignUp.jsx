@@ -1,11 +1,14 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
 import {Link, Redirect} from 'react-router-dom';
-import sendLoginData from "../../store/actions/auth";
+import signUp from "../../store/actions/auth";
 import DateOfBirth from "./DateOfBirth";
 
 const SignUp = (props) => {
+    const [birthDaySelect, setBirthDaySelect] = useState(false);
+    const [monthSelect, setMonthSelect] = useState(false);
+    const [yearSelect, setYearSelect] = useState(false);
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -13,11 +16,14 @@ const SignUp = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.sendLoginData({
+        props.signUp({
             nameValue: nameRef.current.value,
             emailValue: emailRef.current.value,
             passwordValue: passwordRef.current.value,
-            confirmPasswordValue: passwordConfirmRef.current.value
+            confirmPasswordValue: passwordConfirmRef.current.value,
+            dayOfBirth: birthDaySelect,
+            monthOfBirth: monthSelect,
+            yearOfBirth: yearSelect
         });
     };
 
@@ -33,7 +39,14 @@ const SignUp = (props) => {
                     {props.errorMessage && <p className='sign-content__error'>{props.errorMessage}</p>}
                     <label htmlFor="sign-up-userName">Enter your name</label>
                     <input id='sign-up-userName' type="text" ref={nameRef} required/>
-                    <DateOfBirth/>
+                    <DateOfBirth
+                        birthDaySelect={birthDaySelect}
+                        setBirthDaySelect={setBirthDaySelect}
+                        monthSelect={monthSelect}
+                        setMonthSelect={setMonthSelect}
+                        yearSelect={yearSelect}
+                        setYearSelect={setYearSelect}
+                    />
                     <label htmlFor="sign-up-email">Email</label>
                     <input type="email" id='sign-up-email' ref={emailRef} required/>
                     <label htmlFor="sign-up-password">Password</label>
@@ -57,7 +70,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendLoginData: (data) => dispatch(sendLoginData(data))
+        signUp: (data) => dispatch(signUp(data))
     }
 };
 
