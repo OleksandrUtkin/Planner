@@ -32,3 +32,65 @@
         text-align: center;
     }
 }
+
+.birthday-container {
+    margin-top: 20px;
+    position: relative;
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        background: lightblue;
+        cursor: pointer;
+        transition: background .1s ease-in;
+        &:hover {
+            background: #ffffff;
+        }
+    }
+    p {
+        margin-bottom: 10px;
+    }
+    &__btns {
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        height: 30px;
+        cursor: pointer;
+    }
+    &__day, &__year {
+        width: 22%;
+    }
+    &__month {
+        width: 50%;
+    }
+    &__modals {
+        height: 220px;
+        overflow: hidden;
+        position: absolute;
+        top: 65px;
+        width: 100%;
+        display: flex;
+    }
+    &__modal-day-ul {
+        width: 22%;
+        height: 100%;
+        overflow-y: auto;
+    }
+    &__modal-month-ul {
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 100%;
+        overflow-y: auto;
+    }
+    &__modal-years-ul {
+        width: 22%;
+        height: 100%;
+        overflow-y: auto;
+        right: 0;
+        position: absolute;
+    }
+}

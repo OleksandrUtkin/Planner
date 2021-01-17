@@ -23,10 +23,4 @@ const mapStateToProps = (store) => {
     }
 };
 
-// export default compose(
-//     connect(mapStateToProps),
-//     firestoreConnect([
-//         {collection: 'users'}
-//     ])
-// )(Dashboard);
 export default connect(mapStateToProps)(Dashboard)

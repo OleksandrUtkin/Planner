@@ -3,6 +3,7 @@ import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
 import {Link, Redirect} from 'react-router-dom';
 import sendLoginData from "../../store/actions/auth";
+import DateOfBirth from "./DateOfBirth";
 
 const SignUp = (props) => {
     const nameRef = useRef();
@@ -32,6 +33,7 @@ const SignUp = (props) => {
                     {props.errorMessage && <p className='sign-content__error'>{props.errorMessage}</p>}
                     <label htmlFor="sign-up-userName">Enter your name</label>
                     <input id='sign-up-userName' type="text" ref={nameRef} required/>
+                    <DateOfBirth/>
                     <label htmlFor="sign-up-email">Email</label>
                     <input type="email" id='sign-up-email' ref={emailRef} required/>
                     <label htmlFor="sign-up-password">Password</label>
