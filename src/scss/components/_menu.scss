@@ -1,0 +1,29 @@
+.menu {
+    position: fixed;
+    width: 300px;
+    right: -300px;
+    height: calc(100vh - 45px);
+    top: 45px;
+    background: $greyDefault;
+    display: flex;
+    flex-direction: column;
+    transition: right .2s ease-in;
+    border-top: 1px solid $greyDark;
+    &_open {
+        right: 0;
+    }
+    &__li-btn {
+        padding: 0 4vw;
+        cursor: pointer;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        background: transparent;
+        border-bottom: 1px solid $greyLessDark;
+        transition: background-color .2s ease-in;
+        font-size: 14px;
+        &:hover {
+            background: $greyLessDark;
+        }
+    }
+}

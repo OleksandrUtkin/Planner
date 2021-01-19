@@ -3,14 +3,13 @@
   padding: 0;
   outline: none;
   box-sizing: border-box;
+  border: none;
+  font-family: Roboto, sans-serif;
+  color: #e3e3e3;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 code {
@@ -18,11 +17,12 @@ code {
     monospace;
 }
 
-header {
-  height: 45px;
-  background: pink;
-}
-
 ul {
   list-style-type: none;
 }
+
+@import 'variables/_colors';
+
+@import 'components/_auth';
+@import 'components/_header';
+@import 'components/_menu';

@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react';
-import '../../scss/components/auth.scss';
 
 const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSelect, yearSelect, setYearSelect}) => {
     const dayModalRef = useRef();

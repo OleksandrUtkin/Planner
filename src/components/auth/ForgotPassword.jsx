@@ -1,6 +1,5 @@
 import React, {useRef, useEffect} from 'react';
 import {connect} from 'react-redux';
-import '../../scss/components/auth.scss';
 import {restorePasswordAction} from "../../store/actions/auth";
 import {Link} from 'react-router-dom';
 

@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react';
-import '../../scss/components/auth.scss';
 // import {useAuth} from "../../context/AuthContext";
 // import {Link, useHistory} from 'react-router-dom';
 

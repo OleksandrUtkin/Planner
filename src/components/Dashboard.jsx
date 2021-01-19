@@ -1,15 +1,14 @@
 import React  from 'react';
-import Menu from "./menu/Menu";
+
 import {connect} from 'react-redux';
-import {firestoreConnect} from "react-redux-firebase";
-import {compose} from 'redux';
+// import {firestoreConnect} from "react-redux-firebase";
+// import {compose} from 'redux';
+import Header from "./layout/Header";
 
 const Dashboard = (props) => {
     return (
         <>
-            <header>
-                <Menu/>
-            </header>
+            <Header/>
             <h2>Dashboard</h2>
             <h3>{props.name}</h3>
         </>

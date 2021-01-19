@@ -1,5 +1,4 @@
-import React, {useRef, useState} from 'react';
-import '../../scss/components/auth.scss';
+import React, {useRef} from 'react';
 import {connect} from "react-redux";
 import {Link, Redirect} from 'react-router-dom';
 import {logIn} from '../../store/actions/auth';

@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react';
-import '../../scss/components/auth.scss';
 import {connect} from "react-redux";
 import {Link, Redirect} from 'react-router-dom';
 import signUp from "../../store/actions/auth";
