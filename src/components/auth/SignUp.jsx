@@ -1,17 +1,17 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {connect} from "react-redux";
 import {Link, Redirect} from 'react-router-dom';
-import signUp from "../../store/actions/auth";
+import signUp, {clearMessages} from "../../store/actions/auth";
 import DateOfBirth from "./DateOfBirth";
 
 const SignUp = (props) => {
     const [birthDaySelect, setBirthDaySelect] = useState(false);
     const [monthSelect, setMonthSelect] = useState(false);
     const [yearSelect, setYearSelect] = useState(false);
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordConfirmRef = useRef();
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const passwordConfirmRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,6 +25,10 @@ const SignUp = (props) => {
             yearOfBirth: yearSelect
         });
     };
+
+    useEffect(() => {
+        props.clearMessages();
+    }, []);
 
     if (props.authStatus) {
         return <Redirect to='/'/>
@@ -69,7 +73,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (data) => dispatch(signUp(data))
+        signUp: (data) => dispatch(signUp(data)),
+        clearMessages: () => dispatch(clearMessages())
     }
 };
 

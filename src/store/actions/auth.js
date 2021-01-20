@@ -6,6 +6,7 @@ export const GET_DATA_FAILURE = 'GET_REPOS_FAILURE';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 export const RESTORE_PASSWORD_SUCCESS = 'RESTORE_PASSWORD_SUCCESS';
 export const RESTORE_PASSWORD_FAILURE = 'RESTORE_PASSWORD_FAILURE';
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 
 export const logInFailure = (errorMessage) => {
     return {
@@ -32,6 +33,12 @@ export const restorePasswordFailure = (message) => {
     return {
         type: RESTORE_PASSWORD_SUCCESS,
         payload: message
+    }
+};
+
+export const clearMessages = () => {
+    return {
+        type: CLEAR_MESSAGES
     }
 };
 
@@ -73,8 +80,8 @@ const signUp = ({nameValue, emailValue, passwordValue, confirmPasswordValue, day
     }
 };
 
-export const logOut = (authStatus) => {
-    return async dispatch => {
+export const logOut = () => {
+    return async () => {
         try {
             await firebase.app().auth().signOut();
         } catch (err) {

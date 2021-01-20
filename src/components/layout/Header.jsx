@@ -1,13 +1,19 @@
-import React, {useState, useRef} from 'react';
-import Menu from "./menu/Menu";
+import React, {useState, useRef, useEffect} from 'react';
+import Menu from "./Menu";
 
 const Header = (props) => {
     const [showMenu, setShowMenu] = useState(false);
-    const menuBtnRef = useRef();
+    const menuBtnRef = useRef(null);
+    let unmounted = false;
 
     const setShowMenuFunc = () => {
-        setShowMenu(!showMenu);
+        !unmounted && setShowMenu(!showMenu);
     };
+
+    useEffect(() => {
+        console.log(1);
+        return () => unmounted = true;
+    }, []);
 
     return (
         <header>
@@ -17,7 +23,11 @@ const Header = (props) => {
                 <div className='menu-btn__line menu-btn__line_2'></div>
                 <div className='menu-btn__line menu-btn__line_3'></div>
             </button>
-            <Menu showMenu={showMenu} setShowMenu={setShowMenu} menuBtnRef={menuBtnRef}/>
+            <Menu
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                menuBtnRef={menuBtnRef}
+            />
         </header>
     );
 };

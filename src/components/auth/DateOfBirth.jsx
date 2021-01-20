@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 
 const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSelect, yearSelect, setYearSelect}) => {
-    const dayModalRef = useRef();
-    const birthDayBtnRef = useRef();
-    const monthModalRef = useRef();
-    const monthBtnRef = useRef();
-    const yearsModalRef = useRef();
-    const yearBtnRef = useRef();
+    const dayModalRef = useRef(null);
+    const birthDayBtnRef = useRef(null);
+    const monthModalRef = useRef(null);
+    const monthBtnRef = useRef(null);
+    const yearsModalRef = useRef(null);
+    const yearBtnRef = useRef(null);
     const [visibleDaysPopUp, setVisibleDayPopUp] = useState(false);
     const [visibleMonthsPopUp, setVisibleMonthsPopUp] = useState(false);
     const [visibleYearsPopUp, setVisibleYearsPopUp] = useState(false);
@@ -51,9 +51,9 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
         }
 
         // days/months/years condition
-        if (e.target.innerHTML === '29' && monthSelect === 'February' && !yearSelect) {
+        if (e.target.innerHTML === '29' && monthSelect === 'February') {
             setYears(years.filter(year => year % 4 === 0))
-        } else if (e.target.innerHTML === '29' && yearSelect && yearSelect % 4 ===0) {
+        } else if (e.target.innerHTML === '29' && yearSelect && yearSelect % 4 === 0) {
             setMonths(months29leapYear);
         } else if (e.target.innerHTML === '29' && !yearSelect) {
             setMonths(months29leapYear);
@@ -63,6 +63,7 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
             setMonths(months31)
         } else {
             setMonths(months29leapYear);
+            setYears(setYearsFunc);
         }
     };
 
@@ -78,9 +79,11 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
         } else if (yearSelect % 4 !== 0 && e.target.innerHTML === 'February') {
             setDaysInMonth(days28)
         } else if (months31.includes(e.target.innerHTML)) {
-            setDaysInMonth(days31)
+            setDaysInMonth(days31);
+            setYears(setYearsFunc);
         } else if (months30.includes(e.target.innerHTML)) {
-            setDaysInMonth(days30)
+            setDaysInMonth(days30);
+            setYears(setYearsFunc);
         }
 
         // open right popup
@@ -114,7 +117,7 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
     };
 
     const handleOutsideClick = (e) => {
-        if (visibleDaysPopUp && !e.path.includes(dayModalRef.current) && !e.path.includes(birthDayBtnRef.current)) {
+        if (visibleDaysPopUp && !e.composedPath().includes(dayModalRef.current) && !e.composedPath().includes(birthDayBtnRef.current)) {
             setVisibleDayPopUp(false)
         }
 
@@ -122,7 +125,7 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
             onDayChoose(e);
         }
 
-        if (visibleMonthsPopUp && !e.path.includes(monthModalRef.current) && !e.path.includes(monthBtnRef.current)) {
+        if (visibleMonthsPopUp && !e.composedPath().includes(monthModalRef.current) && !e.composedPath().includes(monthBtnRef.current)) {
             setVisibleMonthsPopUp(false);
         }
 
@@ -130,7 +133,7 @@ const DateOfBirth = ({birthDaySelect, setBirthDaySelect, monthSelect, setMonthSe
             onMonthChoose(e);
         }
 
-        if (visibleYearsPopUp && !e.path.includes(yearsModalRef.current) && !e.path.includes(yearBtnRef.current)) {
+        if (visibleYearsPopUp && !e.composedPath().includes(yearsModalRef.current) && !e.composedPath().includes(yearBtnRef.current)) {
             setVisibleYearsPopUp(false);
         }
 

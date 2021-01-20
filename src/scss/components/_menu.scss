@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     transition: right .2s ease-in;
-    border-top: 1px solid $greyDark;
+    border-top: 1px solid $greyLessDark;
     &_open {
         right: 0;
     }
@@ -22,8 +22,42 @@
         border-bottom: 1px solid $greyLessDark;
         transition: background-color .2s ease-in;
         font-size: 14px;
+        svg {
+            margin-right: 10px;
+        }
         &:hover {
             background: $greyLessDark;
         }
+    }
+    &__user-settings {
+        background: transparent;
+        cursor: pointer;
+        padding: 15px 4vw 0;
+        text-align: left;
+        border-bottom: 1px solid $greyLessDark;
+        transition: background-color .2s ease-in;
+        &:hover {
+            background: $greyLessDark;
+        }
+    }
+    &__user-settings-text {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+        svg {
+            margin-right: 10px;
+        }
+    }
+    &__user-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    &__user-email {
+        font-size: 13px;
+        margin-bottom: 10px;
+        color: $grey;
     }
 }

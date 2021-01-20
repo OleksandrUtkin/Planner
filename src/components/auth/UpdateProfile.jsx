@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react';
+// import React, {useRef, useState} from 'react';
 // import {useAuth} from "../../context/AuthContext";
 // import {Link, useHistory} from 'react-router-dom';
 
-const UpdateProfile = (props) => {
+// const UpdateProfile = (props) => {
     // const emailRef = useRef();
     // const passwordRef = useRef();
     // const passwordConfirmRef = useRef();
@@ -38,9 +38,9 @@ const UpdateProfile = (props) => {
     //     });
     // };
 
-    return (
-        <>
-        </>
+    // return (
+    //     <>
+    //     </>
         // <section className='sign-wrap'>
         //     <div className="sign-content">
         //         <form className='sign-content__form' action="POST" onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ const UpdateProfile = (props) => {
         //         <Link to='/'>Cancel</Link>
         //     </div>
         // </section>
-    );
-};
-
-export default UpdateProfile;
+//     );
+// };
+//
+// export default UpdateProfile;
