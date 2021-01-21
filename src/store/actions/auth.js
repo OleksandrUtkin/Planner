@@ -84,6 +84,7 @@ export const logOut = () => {
     return async () => {
         try {
             await firebase.app().auth().signOut();
+            sessionStorage.clear();
         } catch (err) {
             console.log(err.message);
         }

@@ -1,33 +1,19 @@
-import React, {useState, useRef, useEffect} from 'react';
-import Menu from "./Menu";
+import React from 'react';
+import NavGoalsTypes from "./NavGoalsTypes";
 
 const Header = (props) => {
-    const [showMenu, setShowMenu] = useState(false);
-    const menuBtnRef = useRef(null);
-    let unmounted = false;
-
-    const setShowMenuFunc = () => {
-        !unmounted && setShowMenu(!showMenu);
-    };
-
-    useEffect(() => {
-        console.log(1);
-        return () => unmounted = true;
-    }, []);
+    const setShowMenuFunc = props.setShowMenuFunc;
+    const menuBtnRef = props.menuBtnRef;
 
     return (
         <header>
-            <p>Planner</p>
+            <p className='logo-text'>Planner</p>
+            <NavGoalsTypes/>
             <button className="menu-btn" onClick={setShowMenuFunc} ref={menuBtnRef}>
                 <div className='menu-btn__line menu-btn__line_1'></div>
                 <div className='menu-btn__line menu-btn__line_2'></div>
                 <div className='menu-btn__line menu-btn__line_3'></div>
             </button>
-            <Menu
-                showMenu={showMenu}
-                setShowMenu={setShowMenu}
-                menuBtnRef={menuBtnRef}
-            />
         </header>
     );
 };

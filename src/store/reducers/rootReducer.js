@@ -1,12 +1,12 @@
 import authReducer from "./authReducer";
-import lifeGoalsReducer from "./lifeGoalsReducer";
+import showTypesOfGoalsReducer from "./showTypesOfGoalsReducer";
 import {combineReducers} from "redux";
 // import {firestoreReducer} from "redux-firestore";
 import {firebaseReducer} from "react-redux-firebase";
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    lifeGoals: lifeGoalsReducer,
+    showTypesOfGoalsReducer: showTypesOfGoalsReducer,
     // firestore: firestoreReducer,
     firebase: firebaseReducer
 });
