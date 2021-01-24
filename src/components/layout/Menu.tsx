@@ -1,11 +1,22 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, Dispatch, SetStateAction, FC} from 'react';
 import {connect} from "react-redux";
 import {useHistory} from 'react-router-dom';
-import {logOut} from "../../store/actions/auth";
 import {ReactComponent as LogoutSvg} from "../../icons/logoutIcon.svg";
 import {ReactComponent as SettingsIcon} from "../../icons/settingsIcon.svg";
+import {RootReducerType} from '../../store/reducers/rootReducer';
+import {logOut} from '../../store/actions/auth';
 
-const Menu = (props) => {
+type PropsType = {
+    showMenu: boolean
+    setShowMenu: Dispatch<SetStateAction<boolean>>
+    menuBtnRef: any
+    userEmail: string | null
+    authStatus: string
+    userName: any
+    logOut: any
+};
+
+const Menu: FC<PropsType> = (props ) => {
     const history= useHistory();
     const showMenu = props.showMenu;
     const setShowMenu = props.setShowMenu;
@@ -14,11 +25,11 @@ const Menu = (props) => {
     const userName = props.userName;
     const menuRef = useRef(null);
 
-    const handleLogOut = () => {
+    const handleLogOut = async () => {
         props.logOut();
     };
 
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = (e: any) => {
         if (!e.composedPath().includes(menuBtnRef.current) && !e.composedPath().includes(menuRef.current)) {
             setShowMenu(false);
         }
@@ -51,15 +62,15 @@ const Menu = (props) => {
     );
 };
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state: RootReducerType) => {
     return {
-        authStatus: store.firebase.auth.uid,
-        userEmail: store.firebase.auth.email,
-        userName: store.firebase.profile.userName
+        authStatus: state.firebase.auth.uid,
+        userEmail: state.firebase.auth.email,
+        userName: state.firebase.profile.userName
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         logOut: () => dispatch(logOut())
     }

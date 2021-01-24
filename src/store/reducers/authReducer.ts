@@ -6,17 +6,22 @@ import {
     CLEAR_MESSAGES
 } from '../actions/auth';
 
-const initialState = {
+export type InitialStateType = {
+    errorMessage: null | string
+    message: null | string
+};
+
+const initialState : InitialStateType = {
     errorMessage: null,
     message: null
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case GET_DATA_FAILURE:
             return {
                 ...state,
-                errorMessage: action.payload.errorMessage
+                errorMessage: action.payload
             };
         case LOG_IN_FAILURE:
             return {

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
+import {RootReducerType} from '../store/reducers/rootReducer';
 
-const PrivateRoute = ({component: Component, authStatus,  ...rest}) => {
+const PrivateRoute: FC<any> = ({component: Component, authStatus,  ...rest}) => {
     return (
         <Route
             {...rest}
@@ -14,7 +15,7 @@ const PrivateRoute = ({component: Component, authStatus,  ...rest}) => {
     );
 };
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (store: RootReducerType) => {
     return {
         authStatus: store.firebase.auth.uid,
     }

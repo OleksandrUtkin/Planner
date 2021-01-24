@@ -7,7 +7,7 @@ import rootReducer from "./store/reducers/rootReducer";
 import {Provider} from "react-redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from "redux-thunk";
-import {reactReduxFirebase, getFirebase, ReactReduxFirebaseProvider} from "react-redux-firebase";
+import {getFirebase, ReactReduxFirebaseProvider} from "react-redux-firebase";
 import {reduxFirestore, getFirestore, createFirestoreInstance} from "redux-firestore";
 import {config} from './config/fbConfig';
 import firebase from "firebase/app";

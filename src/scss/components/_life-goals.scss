@@ -1,0 +1,15 @@
+.years-ul {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 3.7vw);
+    width: 50%;
+    gap: .9vw;
+    &__year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $greyLessDark;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+}
