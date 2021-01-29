@@ -44,6 +44,8 @@ const Menu: FC<PropsType> = (props ) => {
         return () => document.body.removeEventListener('click', handleOutsideClick);
     });
 
+
+
     return (
         <div className={showMenu ? 'menu menu_open' : 'menu'} ref={menuRef}>
             <button onClick={goToUserSettings} className="menu__user-settings">

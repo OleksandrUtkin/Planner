@@ -6,8 +6,6 @@ import Menu from "./layout/Menu";
 
 const Main: React.FC = () => {
 
-    console.log(1);
-
     const [showMenu, setShowMenu] = useState(false);
     let unmounted: boolean = false;
     const menuBtnRef = useRef(null);
