@@ -1,0 +1,59 @@
+.life-goals-section {
+    display: flex;
+}
+.years-ul {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 3.7vw);
+    width: 50%;
+    gap: .9vw;
+    &__year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $greyLessDark;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 1.2vw;
+        &_last {
+            background: $redDark;
+            color: $grey;
+        }
+        &_current {
+            border: 2px solid $red;
+        }
+    }
+}
+.months-and-days {
+    width: 50%;
+    display: flex;
+}
+.months-ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    width: 50%;
+    &__month {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid $greyLessDark;
+        cursor: pointer;
+        height: 7.7%;
+        font-size: 1.2vw;
+        &:first-child {
+            border-top: 1px solid $redDark;
+        }
+        &_current {
+            color: $red;
+            border-bottom: 1px solid $red;
+        }
+        &_last {
+            border-bottom: 1px solid $redDark;
+            color: $redDark;
+        }
+    }
+}

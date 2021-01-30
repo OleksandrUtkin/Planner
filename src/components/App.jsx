@@ -1,14 +1,15 @@
 import React, {FC} from 'react';
 import SignUp from "./auth/SignUp";
-// import {AuthProvider} from "../context/AuthContext";
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Main from "./Main";
 import Login from './auth/Login';
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./auth/ForgotPassword";
-// import UpdateProfile from "./auth/UpdateProfile";
 import ProfileSettings from "./ProfileSettings";
 import Page404 from "./Page404";
+// import {AuthProvider} from "../context/AuthContext";
+// import UpdateProfile from "./auth/UpdateProfile";
+
 
 const App = () => {
   return (

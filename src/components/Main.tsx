@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef}  from 'react';
 import {connect} from 'react-redux';
 import Header from "./layout/Header";
-import LifeGoals from "./LifeGoals";
+import LifeGoals from "./dashboard/Dashboard";
 import Menu from "./layout/Menu";
 
 const Main: React.FC = () => {
