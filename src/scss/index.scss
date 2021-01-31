@@ -26,6 +26,7 @@ a {
   min-height: calc(100vh - 45px);
   background: $greyDark;
   padding: 2vw 4vw;
+  display: flex;
 }
 
 @import 'components/_auth';

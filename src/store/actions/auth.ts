@@ -116,7 +116,7 @@ const signUp = ({nameValue, emailValue, passwordValue, confirmPasswordValue, day
                         db.collection('users').doc(cred.user.uid).set({
                             userName: nameValue,
                             dateOfBirth: `${yearOfBirth}-${monthOfBirth}-${dayOfBirth}`,
-                            liveYears: 90
+                            liveYears: 80
                         });
                     }
                 });

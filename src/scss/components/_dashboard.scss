@@ -1,11 +1,15 @@
-.life-goals-section {
+.life-time-section {
     display: flex;
+    width: 50%;
+}
+.years-and-days-in-month {
+    width: 60%;
 }
 .years-ul {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(9, 3.7vw);
-    width: 50%;
+    grid-template-rows: repeat(8, 1.95vw);
+    width: 100%;
     gap: .9vw;
     &__year {
         display: flex;
@@ -14,19 +18,18 @@
         background: $greyLessDark;
         cursor: pointer;
         border-radius: 4px;
-        font-size: 1.2vw;
+        font-size: .9vw;
         &_last {
             background: $redDark;
             color: $grey;
         }
         &_current {
-            border: 2px solid $red;
+            background: $red;
         }
     }
 }
-.months-and-days {
-    width: 50%;
-    display: flex;
+.days-in-month {
+    margin-top: 10px;
 }
 .months-ul {
     display: flex;
@@ -34,7 +37,7 @@
     align-items: center;
     height: 100%;
     justify-content: space-between;
-    width: 50%;
+    width: 40%;
     &__month {
         width: 80%;
         display: flex;
@@ -47,13 +50,28 @@
         &:first-child {
             border-top: 1px solid $redDark;
         }
-        &_current {
-            color: $red;
-            border-bottom: 1px solid $red;
-        }
         &_last {
             border-bottom: 1px solid $redDark;
             color: $redDark;
         }
+        &_current {
+            color: $red;
+            border-bottom: 1px solid $red;
+        }
+    }
+}
+.days-in-month-container {
+    margin-top: 2vw;
+}
+.days-in-week {
+    display: flex;
+    justify-content: space-between;
+    li {
+        width: 12%;
+        font-size: .9vw;
+        height: 1.4vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
